@@ -160,11 +160,7 @@ public class TableResolver implements RestResolver {
         try (PreparedStatement deleteStmt = connection.prepareStatement(deleteSql)) {
             deleteStmt.setInt(1, id);
             int rowsAffected = deleteStmt.executeUpdate();
-            if (rowsAffected == 0) {
-                // To be idempotent, deleting a non-existent resource usually returns 200 or
-                // 204.
-                // We'll return empty bytes for success.
-            }
+            // Idempotent DELETE does not fail if item missing.
         }
         return new byte[0];
     }
