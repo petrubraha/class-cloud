@@ -55,6 +55,7 @@ public class WaiterResolver implements RestResolver {
             insertStmt.setString(2, waiter.getEmail());
             ResultSet rs = insertStmt.executeQuery();
             if (rs.next()) {
+                System.out.printf("!%d %s %s!\n", rs.getInt("id"), rs.getString("name"), rs.getString("email"));
                 Waiter created = new Waiter(rs.getInt("id"), rs.getString("name"), rs.getString("email"));
                 return MAPPER.writeValueAsBytes(created);
             }

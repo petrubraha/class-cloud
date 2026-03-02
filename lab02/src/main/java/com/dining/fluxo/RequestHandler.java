@@ -37,7 +37,7 @@ public class RequestHandler<R extends RestResolver> implements HttpHandler {
             printRequestHead(method, uri, exchange.getRequestHeaders());
             printRequestBody(body);
 
-            resolveRequest(method, uri, body);
+            responseBytes = resolveRequest(method, uri, body);
 
         } catch (InvalidInputException e) {
             statusCode = 400;
@@ -77,7 +77,7 @@ public class RequestHandler<R extends RestResolver> implements HttpHandler {
         return new String(buffer.toByteArray(), StandardCharsets.UTF_8);
     }
 
-    private byte[] resolveRequest(String method, String uri, String body) throws IOException, Exception {
+    private byte[] resolveRequest(String method, String uri, String body) throws Exception {
         RestResolver resourceInstance = resourceClass.getDeclaredConstructor().newInstance();
 
         Integer id = null;
