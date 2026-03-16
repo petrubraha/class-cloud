@@ -13,7 +13,7 @@
 .header {
   text-align: center;
   margin-bottom: 3rem;
-  animation: fadeInDown 0.8s ease-out;
+  animation: fade-in-down 0.8s ease-out;
 }
 
 .title {
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  animation: fadeInUp 1s ease-out;
+  animation: fade-in-up 1s ease-out;
 }
 
 .button-group {
@@ -189,7 +189,9 @@
   resize: vertical;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 
 .payload-textbox:focus {
@@ -245,7 +247,7 @@
   box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.2);
 }
 
-@keyframes fadeInDown {
+@keyframes fade-in-down {
   from {
     opacity: 0;
     transform: translateY(-20px);
@@ -256,7 +258,7 @@
   }
 }
 
-@keyframes fadeInUp {
+@keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(20px);
