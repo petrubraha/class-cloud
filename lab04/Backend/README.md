@@ -8,7 +8,7 @@ A Django-based API gateway that authenticates incoming requests and forwards the
 Client
   │  Authorization: <gateway-api-key>
   ▼
-API Gateway  :8079  (HTTPS)
+API Gateway  :8079  (http)
   ├── GET  /api/waiters/{id}  ──▶  FluxoService   :8080  (no auth)
   ├── POST /api/routes        ──▶  RouteService   :8081  (ROUTE_SERVICE_API_KEY)
   └── POST /api/stores        ──▶  StoreService   :8082  (STORE_SERVICE_API_KEY)
@@ -25,7 +25,7 @@ Once validated, the gateway strips the client key and forwards the request with 
 
 ### `.env`
 
-```
+```dotenv
 FLUXO_SERVICE_URL="http://localhost:8080"
 ROUTE_SERVICE_URL="http://localhost:8081"
 STORE_SERVICE_URL="http://localhost:8082"
@@ -68,7 +68,7 @@ A JSON array of accepted gateway API keys:
   "name": "Store Name",
   "brandId": "<uuid>",
   "description": "A short description of the store",
-  "imageUrl": "https://example.com/image.jpg",
+  "imageUrl": "http://example.com/image.jpg",
   "timezone": 1.0,
   "operatingHoursMap": {
     "MON": {
@@ -103,7 +103,7 @@ bin\start.bat
 .venv\Scripts\python.exe manage.py runsslserver 8079
 ```
 
-The server listens on **`https://localhost:8079`** with a self-signed certificate.
+The server listens on **`http://localhost:8079`** with a self-signed certificate.
 
 ## Logging
 
@@ -126,7 +126,7 @@ Rejected requests emit a `WARNING`:
 ```
 Backend/
 ├── bin/
-│   └── start.bat          # Start script (HTTPS, port 8079)
+│   └── start.bat          # Start script (http, port 8079)
 ├── config/
 │   └── api_keys.json      # Valid gateway API keys
 ├── gateway/               # Django project settings & URL root
