@@ -15,5 +15,5 @@ if not exist "manage.py" (
     exit /b 1
 )
 
-echo Starting gateway on port 8079 (HTTPS)...
-.venv\Scripts\python.exe manage.py runsslserver 8079
+echo Starting gateway on port 8079 (HTTP)...
+.venv\Scripts\python.exe manage.py runserver 8079

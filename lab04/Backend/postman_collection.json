@@ -7,7 +7,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "https://localhost:8079",
+      "value": "http://localhost:8079",
       "type": "string"
     },
     {

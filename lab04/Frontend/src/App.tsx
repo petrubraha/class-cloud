@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './App.css';
 
-const GATEWAY_URL: string = (import.meta.env.GATEWAY_URL as string) ?? 'https://localhost:8079';
+const GATEWAY_URL: string = (import.meta.env.VITE_GATEWAY_URL as string) ?? 'http://localhost:8079';
 
-const GATEWAY_KEY: string = (import.meta.env.GATEWAY_KEY as string) ?? '';
+const GATEWAY_KEY: string = (import.meta.env.VITE_GATEWAY_KEY as string) ?? '';
 
 // Default placeholder payloads shown in the textarea for each button
 const DEFAULT_PAYLOADS: Record<number, string> = {
@@ -50,19 +50,19 @@ function App() {
         const waiterId = payload.trim() ?? '1';
         url = `${GATEWAY_URL}/api/waiters/${encodeURIComponent(waiterId)}`;
         method = 'GET';
-        fetchOptions = { method, headers: authHeaders };
+        fetchOptions = { method: method, headers: authHeaders };
       
       // POST /api/routes
       } else if (buttonId === 2) {
         url = `${GATEWAY_URL}/api/routes`;
         method = 'POST';
-        fetchOptions = { method, headers: authHeaders, body: payload };
+        fetchOptions = { method: method, headers: authHeaders, body: payload };
       
       // POST /api/stores
       } else {
         url = `${GATEWAY_URL}/api/stores`;
         method = 'POST';
-        fetchOptions = { method, headers: authHeaders, body: payload };
+        fetchOptions = { method: method, headers: authHeaders, body: payload };
       }
 
       const res = await fetch(url, fetchOptions);
@@ -92,7 +92,7 @@ function App() {
 
       <main className="main-content">
         <div className="button-group">
-          <button
+          <button type="button"
             className="api-btn btn-1"
             onClick={() => { setPayload(DEFAULT_PAYLOADS[1]); makeRequest(1); }}
             disabled={loading}
@@ -104,7 +104,7 @@ function App() {
             </span>
           </button>
 
-          <button
+          <button type="button"
             className="api-btn btn-2"
             onClick={() => { setPayload(DEFAULT_PAYLOADS[2]); makeRequest(2); }}
             disabled={loading}
@@ -116,7 +116,7 @@ function App() {
             </span>
           </button>
 
-          <button
+          <button type="button"
             className="api-btn btn-3"
             onClick={() => { setPayload(DEFAULT_PAYLOADS[3]); makeRequest(3); }}
             disabled={loading}
