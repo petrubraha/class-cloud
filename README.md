@@ -3,6 +3,7 @@
 ## lab02
 
 It is a standalone Java microservice implemented with Maven and the built-in `com.sun.net.httpserver` HTTP server. A server starts on port 8080 accepting CRUD operations for `/tables` and `/waiters`.
+
 - Data is stored in PostgreSQL via JDBC using a `DATABASE_URL` loaded from `.env`.
 - The service auto-creates the `tables` and `waiters` schema on startup.
 - Responses are JSON serialized with Jackson, and custom exceptions return consistent error codes.
@@ -17,11 +18,13 @@ It is composed of four independent projects:
 - `StoreService/` — Spring Boot store persistence on port `8082`
 
 The gateway forwards requests to backend services:
+
 - `GET /api/waiters/{id}` → `FluxoService` on `8080` (no auth)
 - `POST /api/routes` → `RouteService` on `8081` (API key)
 - `POST /api/stores` → `StoreService` on `8082` (API key)
 
 Quick run order:
+
 1. Start `lab02` FluxoService first.
 2. Start `RouteService`.
 3. Start `StoreService`.
@@ -29,3 +32,8 @@ Quick run order:
 5. Start the React `Frontend`.
 
 For details on each subproject, see the nested `lab04/README.md` and the individual subdirectories.
+
+## Related work
+
+- https://github.com/Sereran/Cloud-Computing
+- https://docs.google.com/document/d/1-HukaVT_bal0IEe4NXKhod7V_0ubIu-RrXCGxaHlyTQ
